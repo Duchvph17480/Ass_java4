@@ -10,12 +10,14 @@
 	<table class="table table-success table-striped">
 		<thead>
 			<th>Tên Danh Mục</th>
+			<th>Người Tạo</th>
 			<th>Thao Tac</th>
 		</thead>
 		<tbody>
 			<c:forEach items="${ ds }" var="obj">
 				<tr>
 					<td>${obj.ten }</td>
+					<td>${obj.user.hoTen }</td>
 					<td><a class="btn btn-danger"
 						href="/ASS_PH17480/cate/delete?id=${obj.id}">Xóa</a></td>
 				</tr>

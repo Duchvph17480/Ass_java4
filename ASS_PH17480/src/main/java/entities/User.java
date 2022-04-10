@@ -30,7 +30,7 @@ public class User implements Serializable {
 	private String password;
 
 	private String sdt;
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy ="user")
 	private List<Category> categories;
 
 	public User() {

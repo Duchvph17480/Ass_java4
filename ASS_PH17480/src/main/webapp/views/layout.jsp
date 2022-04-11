@@ -86,6 +86,6 @@
 	</div>
 	<script src="/ASS_PH17480/js/jquery.min.js"></script>
 	<script src="/ASS_PH17480/js/popper.min.js"></script>
-	<script src="/ASS_PH17480/js/bootstra.min.js"></script>
+	<script src="/ASS_PH17480/js/bootstrap.min.js"></script>
 </body>
 </html>

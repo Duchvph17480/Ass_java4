@@ -14,10 +14,21 @@ import javax.persistence.*;
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	public Category getCate() {
+		return cate;
+	}
+
+	public void setCate(Category cate) {
+		this.cate = cate;
+	}
+
 	@Id
 	private int id;
-
-	@Column(name="category_id")
+	@ManyToOne()
+	@JoinColumn(
+			name ="categoryId"
+			)
+	private Category cate;
 	private int categoryId;
 
 	@Column(name="don_gia")

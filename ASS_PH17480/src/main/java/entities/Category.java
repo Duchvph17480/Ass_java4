@@ -1,16 +1,17 @@
 package entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.List;
 
+import javax.persistence.*;
 
 /**
  * The persistent class for the categories database table.
  * 
  */
 @Entity
-@Table(name="categories")
-@NamedQuery(name="Category.findAll", query="SELECT c FROM Category c")
+@Table(name = "categories")
+@NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,13 +21,11 @@ public class Category implements Serializable {
 
 	private String ten;
 	@ManyToOne()
-	@JoinColumn(
-			name="user_id"
-			)
-	
+	@JoinColumn(name = "user_id")
 	private User user;
 	
-
+	
+	
 	public User getUser() {
 		return user;
 	}
@@ -39,6 +38,9 @@ public class Category implements Serializable {
 		return serialVersionUID;
 	}
 
+	@OneToMany(mappedBy = "cate")
+	private List<Product> product;
+	
 	public Category() {
 	}
 

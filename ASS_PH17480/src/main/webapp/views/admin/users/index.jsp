@@ -27,9 +27,9 @@
 						href="/ASS_PH17480/users/edit?id=${obj.id}">Cap nhap</a></td>
 					<td>
 						<button type="button" class="btn btn-danger"
-							data-bs-toggle="modal" data-bs-target="#exampleModal">
+							data-bs-toggle="modal" data-bs-target="#p${obj.id}">
 							Xóa</button> <!-- Modal -->
-						<div class="modal fade" id="exampleModal" tabindex="-1"
+						<div class="modal fade" id="p${obj.id}" tabindex="-1"
 							aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">

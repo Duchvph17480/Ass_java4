@@ -36,6 +36,7 @@
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="/ASS_PH17480/users/index">User</a></li>
 						<li class="nav-item"><a class="nav-link" href="/ASS_PH17480/cate/index">Category</a></li>
+						<li class="nav-item"><a class="nav-link" href="/ASS_PH17480/product/index">Product</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">

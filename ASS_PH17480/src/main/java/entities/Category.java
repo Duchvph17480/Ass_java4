@@ -20,12 +20,7 @@ public class Category implements Serializable {
 	private int id;
 
 	private String ten;
-	@ManyToOne()
-	@JoinColumn(name = "user_id")
-	private User user;
-	
-	
-	
+
 	public User getUser() {
 		return user;
 	}
@@ -34,9 +29,9 @@ public class Category implements Serializable {
 		this.user = user;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	@OneToMany(mappedBy = "cate")
 	private List<Product> product;
@@ -59,5 +54,6 @@ public class Category implements Serializable {
 	public void setTen(String ten) {
 		this.ten = ten;
 	}
+
 
 }

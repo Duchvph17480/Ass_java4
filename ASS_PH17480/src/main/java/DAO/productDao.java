@@ -63,5 +63,12 @@ public class productDao {
 			throw e;
 		}
 	}
+	public List<Category> allTen(){
+		String jpql = "SELECT obj FROM Category obj";
+		TypedQuery<Category> query = this.en.createQuery(jpql,Category.class);
+		return query.getResultList();
+		
+		
+	}
 
 }

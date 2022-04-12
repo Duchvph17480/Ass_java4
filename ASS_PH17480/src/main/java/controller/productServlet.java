@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -58,7 +59,7 @@ public class productServlet extends HttpServlet {
 	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Category> ds = this.catedao.getAll();
 		System.out.println(ds);
-		request.setAttribute("ListTen", ds);
+		request.setAttribute("ds", ds);
 		request.setAttribute("view", "/views/admin/product/create.jsp");
 		request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
 		
@@ -84,7 +85,7 @@ public class productServlet extends HttpServlet {
 	}
 	private void store(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
-			String CateIdStr = request.getParameter("idCate");
+			String CateIdStr = request.getParameter("category_Id");
 			int cateId = Integer.parseInt(CateIdStr);
 			Category cate = this.catedao.finById(cateId);
 

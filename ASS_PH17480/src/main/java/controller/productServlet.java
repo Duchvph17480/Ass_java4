@@ -9,12 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.categoryDao;
 import DAO.productDao;
 import entities.Product;
 
-/**
- * Servlet implementation class productServlet
- */
 @WebServlet({"/product/index",
 	"/product/store",
 	"/product/create",
@@ -23,11 +21,10 @@ import entities.Product;
 	"/product/delete",
 })
 public class productServlet extends HttpServlet {
-	private productDao proDao;
+	private productDao prodao;
+	private categoryDao catedao;
     public productServlet() {
-    	this.proDao= new productDao();
-       
-       
+    	this.prodao= new productDao();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uri = request.getRequestURI();
@@ -54,12 +51,13 @@ public class productServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 	}
-	private void create(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("view", "/views/admin/product/create.jsp");
+		request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
 		
 	}
 	private void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Product> ds = this.proDao.all();
+		List<Product> ds = this.prodao.All();
 		request.setAttribute("ds", ds);
 		request.setAttribute("view", "/views/admin/product/index.jsp");
 		request.getRequestDispatcher("/views/layout.jsp").forward(request, response);

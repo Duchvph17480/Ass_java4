@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1 style="text-align: center; color: red;">Quản lý Product</h1>
-	<form action="/Assignment/Product/store" method="POST">
+	<form action="/ASS_PH17480/product/store" method="POST">
 		<div class="form-group ms-4">
 			<label>Tên sản phẩm </label> <input type="text" class="form-control"
 				name="ten" />

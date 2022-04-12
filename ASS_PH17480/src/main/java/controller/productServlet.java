@@ -52,6 +52,7 @@ public class productServlet extends HttpServlet {
 		
 	}
 	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setAttribute("view", "/views/admin/product/create.jsp");
 		request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
 		

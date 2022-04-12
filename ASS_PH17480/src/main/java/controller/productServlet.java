@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import DAO.categoryDao;
 import DAO.productDao;
+import entities.Category;
 import entities.Product;
 
 @WebServlet({"/product/index",
@@ -25,6 +28,7 @@ public class productServlet extends HttpServlet {
 	private categoryDao catedao;
     public productServlet() {
     	this.prodao= new productDao();
+    	this.catedao= new categoryDao();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uri = request.getRequestURI();
@@ -52,13 +56,15 @@ public class productServlet extends HttpServlet {
 		
 	}
 	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		List<Category> ds = this.catedao.getAll();
+		System.out.println(ds);
+		request.setAttribute("ListTen", ds);
 		request.setAttribute("view", "/views/admin/product/create.jsp");
 		request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
 		
 	}
 	private void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Product> ds = this.prodao.All();
+		List<Product> ds = this.prodao.getAll();
 		request.setAttribute("ds", ds);
 		request.setAttribute("view", "/views/admin/product/index.jsp");
 		request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
@@ -76,8 +82,22 @@ public class productServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 	}
-	private void store(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void store(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		try {
+			String CateIdStr = request.getParameter("idCate");
+			int cateId = Integer.parseInt(CateIdStr);
+			Category cate = this.catedao.finById(cateId);
+
+			Product entity = new Product();
+			entity.setCate(cate);
+
+			BeanUtils.populate(entity, request.getParameterMap());
+			this.prodao.create(entity);
+			response.sendRedirect("/ASS_PH17480/product/index");
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.sendRedirect("/ASS_PH17480/product/create");
+		}
 		
 	}
 

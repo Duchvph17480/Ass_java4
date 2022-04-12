@@ -23,7 +23,7 @@
 			<c:forEach items="${ ds }" var="obj">
 				<tr>
 					<td>${ obj.ten }</td>
-					<td>${ obj.categoryId }</td>
+					<td>${ obj.cate.ten }</td>
 					<td>${ obj.donGia }</td>
 					<td>${ obj.kichThuoc }</td>
 					<td>${ obj.mauSac }</td>

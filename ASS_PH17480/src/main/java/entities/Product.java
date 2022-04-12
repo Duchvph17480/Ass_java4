@@ -26,10 +26,9 @@ public class Product implements Serializable {
 	private int id;
 	@ManyToOne()
 	@JoinColumn(
-			name ="categoryId"
+			name ="category_Id"
 			)
 	private Category cate;
-	private int categoryId;
 
 	@Column(name="don_gia")
 	private String donGia;
@@ -56,14 +55,6 @@ public class Product implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getCategoryId() {
-		return this.categoryId;
-	}
-
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
 	}
 
 	public String getDonGia() {

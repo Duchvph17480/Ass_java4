@@ -14,10 +14,9 @@
 				name="ten" />
 		</div>
 		<div class="form-group ms-4">
-			<label>Thể loại</label> <select class="form-control"
-				name="categoryId">
-				<c:forEach items="${ ListTen }" var="obj">
-					<option value="${obj.id }">${ obj.ten }</option>
+			<label>Danh mục</label> <select name="category_Id" class="form-select">
+				<c:forEach items="${ ds }" var="cate">
+					<option value="${ cate.id }">${ cate.ten }</option>
 				</c:forEach>
 			</select>
 		</div>

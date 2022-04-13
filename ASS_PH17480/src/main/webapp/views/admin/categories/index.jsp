@@ -20,6 +20,8 @@
 					<td>${obj.user.hoTen }</td>
 					<td><a class="btn btn-danger"
 						href="/ASS_PH17480/cate/delete?id=${obj.id}">Xóa</a></td>
+					<td><a class="btn btn-danger"
+						href="/ASS_PH17480/cate/edit?id=${obj.id}">Cập nhập</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

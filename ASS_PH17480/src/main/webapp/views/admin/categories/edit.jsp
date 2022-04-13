@@ -13,13 +13,7 @@
 		</div>
 		<div>
 			<label>Người tạo</label>
-			<select name="user_id">
-				<c:forEach items="${ ds }" var="obj">
-					<option value="${ obj.id }">
-						${ obj.hoTen }
-					</option>
-				</c:forEach>
-			</select>
+			<input type="text" name="user_id" class="form-control" value="${user.hoTen}" disabled readonly/>
 		</div>
 		<button>Sửa</button>
 	</form>

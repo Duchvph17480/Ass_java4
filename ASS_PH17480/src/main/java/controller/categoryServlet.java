@@ -54,11 +54,11 @@ public class categoryServlet extends HttpServlet {
 	}
 
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<User> ds = this.usdao.getAll();
-		request.setAttribute("ds", ds);
 		String idStr= request.getParameter("id");
 		int id = Integer.parseInt(idStr);
 		Category entity= cateDao.finById(id);
+		User user = entity.getUser();
+		request.setAttribute("user", user);
 		request.setAttribute("cate", entity);
 		request.setAttribute("view", "/views/admin/categories/edit.jsp");
 		request.getRequestDispatcher("/views/layout.jsp").forward(request, response);

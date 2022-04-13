@@ -104,7 +104,7 @@ public class categoryServlet extends HttpServlet {
 			e.printStackTrace();
 			session.setAttribute("error", "Cập nhật thất bại");
 			String id = request.getParameter("id");
-			response.sendRedirect("/ASS_PH17480/categories/edit?id=" + id);
+			response.sendRedirect("/ASS_PH17480/cate/edit?id=" + id);
 		}
 	}
 

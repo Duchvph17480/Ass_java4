@@ -48,8 +48,11 @@ public class productServlet extends HttpServlet {
 		}
 	}
 	
-	private void delete(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int id = Integer.parseInt(request.getParameter("id"));
+		Product entity = this.prodao.findById(id);
+		this.prodao.delete(entity);
+		response.sendRedirect("/ASS_PH17480/product/index");
 		
 	}
 	private void edit(HttpServletRequest request, HttpServletResponse response) {
@@ -88,7 +91,6 @@ public class productServlet extends HttpServlet {
 			String CateIdStr = request.getParameter("category_Id");
 			int cateId = Integer.parseInt(CateIdStr);
 			Category cate = this.catedao.finById(cateId);
-
 			Product entity = new Product();
 			entity.setCate(cate);
 

@@ -42,7 +42,7 @@ public class loginServlet extends HttpServlet {
 			session.setAttribute("user", u);
 			request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
 		} else {
-			System.out.println("Lỗi mẹ rồi");
+			System.out.println("Lỗi r đại ka");
 		}
 	}
 

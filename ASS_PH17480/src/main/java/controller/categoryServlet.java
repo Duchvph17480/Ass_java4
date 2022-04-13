@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -91,16 +92,20 @@ public class categoryServlet extends HttpServlet {
 
 	}
 
-	private void update(HttpServletRequest request, HttpServletResponse response) {
+	private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
 		try {
-			Category entity = new Category();
+			Category entity = cateDao.finById(Integer.parseInt(request.getParameter("id")));
 			BeanUtils.populate(entity, request.getParameterMap());
 			this.cateDao.update(entity);
+			session.setAttribute("message", "Cập nhật thành công");
 			response.sendRedirect("/ASS_PH17480/cate/index");
 		} catch (Exception e) {
 			e.printStackTrace();
+			session.setAttribute("error", "Cập nhật thất bại");
+			String id = request.getParameter("id");
+			response.sendRedirect("/ASS_PH17480/categories/edit?id=" + id);
 		}
-
 	}
 
 	private void store(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -55,8 +55,18 @@ public class productServlet extends HttpServlet {
 		response.sendRedirect("/ASS_PH17480/product/index");
 		
 	}
-	private void edit(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Category> ds = this.catedao.getAll();
+		request.setAttribute("ds", ds);
+		String idStr = request.getParameter("id");
+		int id = Integer.parseInt(idStr);
+		Product entity = this.prodao.findById(id);
+
+		Category categories = entity.getCate();
+		request.setAttribute("categories", categories);
+		request.setAttribute("product", entity);
+		request.setAttribute("view", "/views/admin/product/edit.jsp");
+		request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
 		
 	}
 	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -82,10 +92,24 @@ public class productServlet extends HttpServlet {
 			this.update(request, response);
 		}
 	}
-	private void update(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
+	private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		try {
+			String CateIdStr = request.getParameter("category_Id");
+			int cateId = Integer.parseInt(CateIdStr);
+			Category cate = this.catedao.finById(cateId);
+
+			Product entity = prodao.findById(Integer.parseInt(request.getParameter("id")));
+			entity.setCate(cate);
+			BeanUtils.populate(entity, request.getParameterMap());
+			this.prodao.update(entity);
+			response.sendRedirect("/ASS_PH17480/product/index");
+		} catch (Exception e) {
+			e.printStackTrace();
+			String id = request.getParameter("id");
+			response.sendRedirect("/ASS_PH17480/product/edit?id=" + id);
+		}
 	}
+	
 	private void store(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
 			String CateIdStr = request.getParameter("category_Id");
@@ -93,7 +117,6 @@ public class productServlet extends HttpServlet {
 			Category cate = this.catedao.finById(cateId);
 			Product entity = new Product();
 			entity.setCate(cate);
-
 			BeanUtils.populate(entity, request.getParameterMap());
 			this.prodao.create(entity);
 			response.sendRedirect("/ASS_PH17480/product/index");

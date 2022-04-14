@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -111,6 +112,7 @@ public class productServlet extends HttpServlet {
 	}
 	
 	private void store(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
 		try {
 			String CateIdStr = request.getParameter("category_Id");
 			int cateId = Integer.parseInt(CateIdStr);
@@ -119,9 +121,11 @@ public class productServlet extends HttpServlet {
 			entity.setCate(cate);
 			BeanUtils.populate(entity, request.getParameterMap());
 			this.prodao.create(entity);
+			session.setAttribute("message", "Thêm mới thành công");
 			response.sendRedirect("/ASS_PH17480/product/index");
 		} catch (Exception e) {
 			e.printStackTrace();
+			session.setAttribute("error", "Thêm mới thất bại");
 			response.sendRedirect("/ASS_PH17480/product/create");
 		}
 		

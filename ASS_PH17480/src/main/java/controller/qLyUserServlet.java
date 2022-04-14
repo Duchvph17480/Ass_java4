@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -81,16 +82,21 @@ public class qLyUserServlet extends HttpServlet {
 		response.sendRedirect("/ASS_PH17480/users/index");
 	}
 
-	private void store(HttpServletRequest request, HttpServletResponse response) {
+	private void store(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		
 		try {
 			User entity = new User();
 			BeanUtils.populate(entity, request.getParameterMap());
 			String encryted = EncryptUtil.encrypt(request.getParameter("password"));
 			entity.setPassword(encryted);
 			this.usDao.create(entity);
+			session.setAttribute("message", "Thêm mới thành công");
 			response.sendRedirect("/ASS_PH17480/users/index");
 		} catch (Exception e) {
 			e.printStackTrace();
+			session.setAttribute("error", "Thêm mới thất bại");
+			response.sendRedirect("/ASS_PH17480/users/create");
 		}
 	}
 

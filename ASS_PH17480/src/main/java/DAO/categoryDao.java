@@ -27,7 +27,7 @@ public class categoryDao {
 	}
 	public List<Category> getAll() {
 		TypedQuery<Category> query = this.em.createNamedQuery("Category.findAll", Category.class);
-		return query.getResultList();
+		return query.getResultList();n
 	}
 	public void delete(Category entity) {
 		try {

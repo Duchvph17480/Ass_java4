@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -98,6 +100,47 @@ public class qLyUserServlet extends HttpServlet {
 			session.setAttribute("error", "Thêm mới thất bại");
 			response.sendRedirect("/ASS_PH17480/users/create");
 		}
+//		HttpSession session = request.getSession();
+//		String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+//				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+//		String sdt = "^[0-9]{1}\\d{8}$";
+//		Pattern pt = Pattern.compile(sdt);
+//
+//		try {
+//			User entity = new User();
+//			BeanUtils.populate(entity, request.getParameterMap());
+//			Matcher matcher = pt.matcher(entity.getSdt());
+//			String encrypted = EncryptUtil.encrypt(request.getParameter("password"));
+//
+//			if (entity.getHoTen().isEmpty() || entity.getDiaChi().isEmpty() || entity.getEmail().isEmpty()
+//					|| entity.getPassword().isEmpty() || entity.getSdt().isEmpty()) {
+//				session.setAttribute("error", "Nhập đầy đủ thông tin");
+//				response.sendRedirect("/ASS_PH17480/users/create");
+//
+//			} else {
+//				if (EMAIL_PATTERN.matches(entity.getEmail())) {
+//					session.setAttribute("error", "Sai email");
+//					response.sendRedirect("/ASS_PH17480/users/create");
+//
+//				} else {
+//					if (matcher.find()) {
+//						entity.setPassword(encrypted);
+//						this.usDao.create(entity);
+//						session.setAttribute("message", "Thêm mới thành công");
+//						response.sendRedirect("/ASS_PH17480/users/index");
+//					} else {
+//						session.setAttribute("error", "Sai số điện thoại");
+//						response.sendRedirect("/ASS_PH17480/users/create");
+//
+//					}
+//				}
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			session.setAttribute("error", "Thêm mới thất bại");
+//			response.sendRedirect("/ASS_PH17480/users/create");
+//		}
 	}
 
 	private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -110,7 +153,7 @@ public class qLyUserServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			String id = request.getParameter("id");
-			response.sendRedirect("/ASS_PH17480/users/edit?id="+id);
+			response.sendRedirect("/ASS_PH17480/users/edit?id=" + id);
 		}
 	}
 

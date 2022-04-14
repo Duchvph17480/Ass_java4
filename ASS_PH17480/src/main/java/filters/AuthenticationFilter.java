@@ -15,7 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import entities.User;
 @WebFilter(
-	urlPatterns = 	"/users/*",
+	urlPatterns ={"/users/*",
+			"/cate/*"},
 	filterName="authen_filter"
 )
 public class AuthenticationFilter extends HttpFilter implements Filter {

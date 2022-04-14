@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<c:if test="${ !empty sessionScope.error }">
+	<div class="alert alert-danger">${sessionScope.error }</div>
+	<c:remove var="error" scope="session"></c:remove>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +19,8 @@
 				name="ten" />
 		</div>
 		<div class="form-group ms-4">
-			<label>Danh mục</label> <select name="category_Id" class="form-select">
+			<label>Danh mục</label> <select name="category_Id"
+				class="form-select">
 				<c:forEach items="${ ds }" var="cate">
 					<option value="${ cate.id }">${ cate.ten }</option>
 				</c:forEach>

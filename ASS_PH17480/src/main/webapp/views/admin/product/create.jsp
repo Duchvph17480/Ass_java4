@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1 style="text-align: center; color: red;">Quản lý Product</h1>
+	<h1 style="text-align: center; color: blue;">Quản lý Product</h1>
 	<form action="/ASS_PH17480/product/store" method="POST">
 		<div class="form-group ms-4">
 			<label>Tên sản phẩm </label> <input type="text" class="form-control"

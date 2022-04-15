@@ -9,8 +9,8 @@
 				<div class="container ">
 					<div class="row text-center ">
 						<c:forEach items="${ ds}" var="obj">
-							<div class="col-4">
-								<div class="card" style="width: 19rem;">
+							<div class="row">
+								<div class="card col-3" style="width: 19rem;">
 
 									<div class="card-header">
 										<h5>${ obj.ten }</h5>

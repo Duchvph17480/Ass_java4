@@ -16,7 +16,7 @@ public class categoryDao {
 	}
 	public void create(Category entity) {
 		try {
-			this.em.getTransaction().begin();;
+			this.em.getTransaction().begin();
 			this.em.persist(entity);
 			this.em.getTransaction().commit();
 		} catch (Exception e) {
@@ -27,7 +27,7 @@ public class categoryDao {
 	}
 	public List<Category> getAll() {
 		TypedQuery<Category> query = this.em.createNamedQuery("Category.findAll", Category.class);
-		return query.getResultList();n
+		return query.getResultList();
 	}
 	public void delete(Category entity) {
 		try {

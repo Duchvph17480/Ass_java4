@@ -40,8 +40,29 @@
 					<td>${ obj.img }</td>
 					<td><a class="btn btn-primary"
 						href="/ASS_PH17480/product/edit?id=${obj.id }">Cập nhật</a></td>
-					<td><a class="btn btn-danger"
-						href="/ASS_PH17480/product/delete?id=${ obj.id }">Xóa</a></td>
+					<td><button type="button" class="btn btn-danger"
+							data-bs-toggle="modal" data-bs-target="#p${obj.id}">Xóa</button>
+						<!-- Modal -->
+						<div class="modal fade" id="p${obj.id}" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Bạn có
+											chắc muốn xóa</h5>
+										<button type="button" class="btn-close"
+											data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">Xóa mất luôn đấy đại ka cẩn thận</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">Close</button>
+										<a class="btn btn-danger"
+											href="/ASS_PH17480/product/delete?id=${obj.id}">Xóa</a>
+									</div>
+								</div>
+							</div>
+						</div>
 				</tr>
 			</c:forEach>
 		</tbody>
